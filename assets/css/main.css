@@ -1,0 +1,13 @@
+#location{
+    padding-top: 5rem;
+    text-align: center;
+}
+
+h1{
+    font-family: sans-serif;
+}
+
+span{
+    font-size: 1.2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

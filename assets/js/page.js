@@ -23,10 +23,8 @@ function showPosition(position) {
     console.log('Longitude: ' + position.coords.longitude);
     console.log('Latitude: ' + position.coords.latitude);
 
-    //Get location navn
-    getHumanReadableLocation(position.coords.latitude, position.coords.longitude)
 
-    //Get pollen data navn
+    getHumanReadableLocation(position.coords.latitude, position.coords.longitude)
     getpollenData(position.coords.latitude, position.coords.longitude)
 }
 
@@ -46,7 +44,6 @@ function getHumanReadableLocation(lat, long) {
     fetch(myUrl)
         .then(response => {
 
-            console.log(response);
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -69,42 +66,80 @@ function getHumanReadableLocation(lat, long) {
 //Temporary View code
 function buildLocationName(myCity) {
 
-    let myNameElement = document.getElementById('app');
+    let myNameElement = document.getElementById('location');
 
-    myNameElement.innerText = myCity
+    myNameElement.innerHTML = '<h1><span>City location: </span>' + myCity + '</h1>'
 
 }
 
 
 function getpollenData(lat, long) {
 
-    const apiKey = '65fbef12a2103000499635lbjd9f457';
-    const myUrl = `https://geocode.maps.co/reverse?lat=${lat}&lon=${long}&api_key=${apiKey}`;
+    const timeZone = 'Europe%2FBerlin';
+
+    const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${long}&current=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&hourly=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&timezone=${timeZone}&forecast_days=1`
 
     console.log('get pollen data');
     console.log(lat, long);
 
-    // fetch(myUrl)
-    //     .then(response => {
+    fetch(url)
+        .then(response => {
 
-    //         console.log(response);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
 
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
+            return response.json();
+        })
+        .then(data => {
 
-    //         return response.json();
-    //     })
-    //     .then(data => {
-
-    //         buildLocationName(data.address.city);
+            pollenDataStructure(data)
             
-    //     })
-    //     .catch(error => {
-    //         console.error('Fetch error:', error);
-    //         return null;
-    //     });
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            return null;
+        });
+}
+
+//Controller
+
+function pollenDataStructure(data) {
+
+    let myViewData = []
+
+    //data omkring vores nuværende værdier
+    myViewData.push(data.current)
+
+    buildPollenView(myViewData)
 }
 
 
+//View
+
+function buildPollenView(viewData) {
+
+    // Byg html til nuværende view
+    let myDisplayElement = document.getElementById('pollenData')
+
+    console.log(viewData[0]);
+
+    let myCurrentData = viewData[0] 
+
+    let myCurrentHTML = 
+    `<section>
+        <h2>Pollental</h2>
+        <ul>
+            <li>El ${myCurrentData.alder_pollen}</li>
+            <li>Birk ${myCurrentData.birch_pollen}</li>
+            <li>Græs ${myCurrentData.grass_pollen}</li>
+            <li>Bynke ${myCurrentData.mugwort_pollen}</li>
+            <li>Oliven ${myCurrentData.olive_pollen}</li>
+            <li>Ambrosie ${myCurrentData.ragweed_pollen}</li>
+        </ul>
+    </section>`
+
+    myDisplayElement.innerHTML = myCurrentHTML
+    
+}
 
