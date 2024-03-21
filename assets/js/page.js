@@ -7,7 +7,7 @@ getLocation()
 function getLocation(){
     if(navigator.geolocation) {
 
-        //navigator.geolocation.getCurrentPosition Kræver en navngivet success-funktion som første parameter og en navngivet fejl-funktion som en sekundær parameter.
+        //navigator.geolocation.getCurrentPosition kræver en navngivet success-funktion som første parameter og en navngivet fejl-funktion som sekundær parameter.
 
         navigator.geolocation.getCurrentPosition(showPosition, geoError);
     } else {
@@ -15,27 +15,15 @@ function getLocation(){
     }
 }
 
+//Geo Location success funktioner modtager et data objekt
 function showPosition(position) {
    console.log('Longitude: ' + position.coords.longitude);
    console.log('Latitude: ' + position.coords.latitude);
 }
 
+
+//Geo error funktion som modtager et data objekt
 function geoError(error) {
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            console.log('User denied  the request for Geolocation.');
-            break;
-        
-        case error.POSITION_UNAVAILABLE:
-            console.log('Location information is unavailable.');
-            break;
-        
-        case error.TIMEOUT:
-            console.log('The Request to get user location timed out.');
-            break;
-        
-         case error.UNKNOWN_ERROR:
-            console.log('An unknown error occured.');
-            break;
-    }
+
+    console.log(error.message);
 }
