@@ -1,11 +1,29 @@
+:root{
+    --Primary: #4BA598;
+    --Secondary: #F2F2F2;
+}
+
+*{
+    font-family: sans-serif;
+}
+
+.container-header{
+background-color: var(--Primary);
+}
+
 #location{
-    padding-top: 5rem;
     text-align: center;
+    padding: 3rem 0;
 }
 
 h1{
+    margin: 0;
     font-family: sans-serif;
+    color: #fff;
+    font-weight: 300;
+    font-size: 3rem;
 }
+
 
 span{
     font-size: 1.2rem;

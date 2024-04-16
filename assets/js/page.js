@@ -24,8 +24,8 @@ function showPosition(position) {
     console.log('Latitude: ' + position.coords.latitude);
 
 
-    getHumanReadableLocation(position.coords.latitude, position.coords.longitude)
-    getpollenData(position.coords.latitude, position.coords.longitude)
+    getHumanReadableLocation(position.coords.latitude, position.coords.longitude);
+    getpollenData(position.coords.latitude, position.coords.longitude);
 }
 
 //Geo error funktion som modtager et data objekt
