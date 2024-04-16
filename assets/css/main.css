@@ -1,14 +1,28 @@
 :root{
-    --Primary: #4BA598;
-    --Secondary: #F2F2F2;
+    --primary: #4BA598;
+    --secondary: #F2F2F2;
 }
 
-*{
+body{
     font-family: sans-serif;
+    margin: 0;
 }
+
+h1{
+    margin: 0;
+    color: #fff;
+    font-weight: 300;
+    font-size: 5rem;
+}
+h2{
+    margin: 0;
+
+}
+
+/* HEADER */
 
 .container-header{
-background-color: var(--Primary);
+background-color: var(--primary);
 }
 
 #location{
@@ -16,16 +30,67 @@ background-color: var(--Primary);
     padding: 3rem 0;
 }
 
-h1{
-    margin: 0;
-    font-family: sans-serif;
-    color: #fff;
-    font-weight: 300;
-    font-size: 3rem;
+#location span{
+    font-size: 2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* MAIN */
+
+.main{
+    padding: 0 1rem;
+    background-color: var(--secondary);
+    padding-bottom: 10rem;
 }
 
 
-span{
-    font-size: 1.2rem;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+/* POLLENDATA SECTION */
+
+#pollenData{
+    padding: 1rem;
+}
+
+#pollenData ul{
+    padding: 0;
+    margin: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#pollenData li{
+    position: relative;
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 3.5vw;
+    font-weight: 600;
+    list-style: none;
+    text-align: end;
+    background-color: white;
+    border: 3px solid var(--primary);
+    border-radius: 2vw;
+}
+
+#pollenData img{
+    display: none;
+    width: 250px;
+    height: 200px;
+    margin-left: 1rem;
+    position: absolute;
+    border-radius: 2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+
+
+.footer-main {
+    background-color: var(--primary);
+    padding: 3rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

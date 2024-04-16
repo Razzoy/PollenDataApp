@@ -54,7 +54,7 @@ function getHumanReadableLocation(lat, long) {
         .then(data => {
 
             buildLocationName(data.address.city);
-            
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -68,7 +68,7 @@ function buildLocationName(myCity) {
 
     let myNameElement = document.getElementById('location');
 
-    myNameElement.innerHTML = '<h1><span>City location: </span>' + myCity + '</h1>'
+    myNameElement.innerHTML = '<h1><span>Lokation: </span>' + myCity + '</h1>'
 
 }
 
@@ -94,7 +94,7 @@ function getpollenData(lat, long) {
         .then(data => {
 
             pollenDataStructure(data)
-            
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -115,7 +115,7 @@ function pollenDataStructure(data) {
 }
 
 
-//View
+View
 
 function buildPollenView(viewData) {
 
@@ -124,22 +124,43 @@ function buildPollenView(viewData) {
 
     console.log(viewData[0]);
 
-    let myCurrentData = viewData[0] 
+    let myCurrentData = viewData[0]
 
-    let myCurrentHTML = 
-    `<section>
-        <h2>Pollental</h2>
-        <ul>
-            <li>El ${myCurrentData.alder_pollen}</li>
-            <li>Birk ${myCurrentData.birch_pollen}</li>
-            <li>Græs ${myCurrentData.grass_pollen}</li>
-            <li>Bynke ${myCurrentData.mugwort_pollen}</li>
-            <li>Oliven ${myCurrentData.olive_pollen}</li>
-            <li>Ambrosie ${myCurrentData.ragweed_pollen}</li>
-        </ul>
-    </section>`
+    let myCurrentHTML =
+        `<ul>
+     <li>
+         <h2>El<h2>
+         <img src="assets/img/alder_pollen.jpg" alt="El Pollen">
+         <span>${myCurrentData.alder_pollen}</span>
+     </li>
+     <li>
+         <h2>Birk<h2>
+         <img src="assets/img/birch_pollen.jpg" alt="Birk Pollen">
+         <span>${myCurrentData.birch_pollen}</span>
+     </li>
+     <li>
+         <h2>Græs<h2>
+         <img src="assets/img/grass_pollen.jpg" alt="Græs Pollen">
+         <span>${myCurrentData.grass_pollen}</span>
+     </li>
+     <li>
+         <h2>Bynke<h2>
+         <img src="assets/img/mugwort_pollen.jpg" alt="Bynke Pollen">
+         <span>${myCurrentData.mugwort_pollen}</span>
+     </li>
+     <li>
+         <h2>Oliven<h2>
+         <img src="assets/img/olive_pollen.jpg" alt="Oliven Pollen">
+         <span>${myCurrentData.olive_pollen}</span>
+     </li>
+     <li>
+         <h2>Ambrosie<h2>
+         <img src="assets/img/ragweed_pollen.jpg" alt="Ambrosie Pollen">
+         <span>${myCurrentData.ragweed_pollen}</span>
+     </li>
+ </ul>
+`;
 
     myDisplayElement.innerHTML = myCurrentHTML
-    
-}
 
+}
