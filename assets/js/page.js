@@ -95,7 +95,8 @@ function getpollenData(lat, long) {
         })
         .then(data => {
 
-            pollenDataStructure(data)
+            receivedPollenData(data);
+            
 
         })
         .catch(error => {
@@ -106,66 +107,96 @@ function getpollenData(lat, long) {
 
 //Controller
 
-function pollenDataStructure(data) {
+function receivedPollenData(data) {
 
-    let myViewData = []
+    let hourData = [];
 
-    //data omkring vores nuværende værdier
-    myViewData.push(data.current)
+    let timeStamps = data.hourly.time;
 
-    buildPollenView(myViewData)
+    timeStamps.map((timestamp, index) => {
+
+        let hourDataObjects = {}
+
+        hourDataObjects.time = timestamp;
+        hourDataObjects.alder_pollen = data.hourly.alder_pollen[index];
+        hourDataObjects.birch_pollen = data.hourly.birch_pollen[index];
+        hourDataObjects.grass_pollen = data.hourly.grass_pollen[index];
+        hourDataObjects.mugwort_pollen = data.hourly.mugwort_pollen[index];
+        hourDataObjects.olive_pollen = data.hourly.olive_pollen[index];
+        hourDataObjects.ragweed_pollen = data.hourly.ragweed_pollen[index];
+
+        hourData.push(hourDataObjects);
+
+
+    });
+
+    let latestPollenData = [];
+    latestPollenData.push(hourData[0]);
+    console.log(latestPollenData);
+
+    
+    buildPollenView(hourData, latestPollenData);
 }
 
 
 // VIEW
 
 //Bygger en pollen data view med nuværende data og en timevist 24 time data, som er modtage i en array
-function buildPollenView(viewData) {
+function buildPollenView(hourData, latestData) {
 
     // Byg html til nuværende view
     let myDisplayElement = document.getElementById('pollenData')
 
-    console.log(viewData[0]);
 
-    let myCurrentData = viewData[0]
+    // let myCurrentData = viewData[0]
 
-    console.log("hello");
+    latestData.forEach(element => {
+    let pollenFigure = `<figure>${element.alder_pollen}</figure>`;
+    myDisplayElement.innerHTML += pollenFigure;
+        
+    });
 
-    let myCurrentHTML =
-        `<ul>
-     <li>
-         <h2>El<h2>
-         <img src="assets/img/alder_pollen.jpg" alt="El Pollen">
-         <span>${myCurrentData.alder_pollen} p/m³</span>
-     </li>
-     <li>
-         <h2>Birk<h2>
-         <img src="assets/img/birch_pollen.jpg" alt="Birk Pollen">
-         <span>${myCurrentData.birch_pollen} p/m³</span>
-     </li>
-     <li>
-         <h2>Græs<h2>
-         <img src="assets/img/grass_pollen.jpg" alt="Græs Pollen">
-         <span>${myCurrentData.grass_pollen} p/m³</span>
-     </li>
-     <li>
-         <h2>Bynke<h2>
-         <img src="assets/img/mugwort_pollen.jpg" alt="Bynke Pollen">
-         <span>${myCurrentData.mugwort_pollen} p/m³</span>
-     </li>
-     <li>
-         <h2>Oliven<h2>
-         <img src="assets/img/olive_pollen.jpg" alt="Oliven Pollen">
-         <span>${myCurrentData.olive_pollen} p/m³</span>
-     </li>
-     <li>
-         <h2>Ambrosie<h2>
-         <img src="assets/img/ragweed_pollen.jpg" alt="Ambrosie Pollen">
-         <span>${myCurrentData.ragweed_pollen} p/m³</span>
-     </li>
- </ul>
-`;
+    hourData.forEach(element => {
+        let pollenFigure = `<figure>${element}</figure>`;
+        myDisplayElement.innerHTML += pollenFigure;
+            
+        });
 
-    myDisplayElement.innerHTML = myCurrentHTML
+//     let myCurrentHTML =
+//         `<ul>
+//      <li>
+//          <h2>El<h2>
+//          <img src="assets/img/alder_pollen.jpg" alt="El Pollen">
+//          <span>${myCurrentData.alder_pollen} p/m³</span>
+//      </li>
+//      <li>
+//          <h2>Birk<h2>
+//          <img src="assets/img/birch_pollen.jpg" alt="Birk Pollen">
+//          <span>${myCurrentData.birch_pollen} p/m³</span>
+//      </li>
+//      <li>
+//          <h2>Græs<h2>
+//          <img src="assets/img/grass_pollen.jpg" alt="Græs Pollen">
+//          <span>${myCurrentData.grass_pollen} p/m³</span>
+//      </li>
+//      <li>
+//          <h2>Bynke<h2>
+//          <img src="assets/img/mugwort_pollen.jpg" alt="Bynke Pollen">
+//          <span>${myCurrentData.mugwort_pollen} p/m³</span>
+//      </li>
+//      <li>
+//          <h2>Oliven<h2>
+//          <img src="assets/img/olive_pollen.jpg" alt="Oliven Pollen">
+//          <span>${myCurrentData.olive_pollen} p/m³</span>
+//      </li>
+//      <li>
+//          <h2>Ambrosie<h2>
+//          <img src="assets/img/ragweed_pollen.jpg" alt="Ambrosie Pollen">
+//          <span>${myCurrentData.ragweed_pollen} p/m³</span>
+//      </li>
+//  </ul>
+// `;
+
+//     myDisplayElement.innerHTML = myCurrentHTML
 
 }
