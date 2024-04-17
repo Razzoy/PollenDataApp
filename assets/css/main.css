@@ -1,13 +1,24 @@
+body{
+    font-family: sans-serif;
+}
+
 #location{
-    padding-top: 5rem;
-    text-align: center;
+    padding-top: 3rem;
 }
 
 h1{
-    font-family: sans-serif;
+    
 }
 
 span{
     font-size: 1.2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+ul{
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
 }

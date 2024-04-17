@@ -68,7 +68,7 @@ function buildLocationName(myCity) {
 
     let myNameElement = document.getElementById('location');
 
-    myNameElement.innerHTML = '<h1><span>City location: </span>' + myCity + '</h1>'
+    myNameElement.innerHTML = '<h1><span>Location: </span>' + myCity + '</h1>'
 
 }
 
@@ -117,6 +117,7 @@ function pollenDataStructure(data) {
 
 //View
 
+//Bygger en pollen data view med nuværende data og en timevist 24 time data, som er modtage i en array
 function buildPollenView(viewData) {
 
     // Byg html til nuværende view
@@ -126,16 +127,17 @@ function buildPollenView(viewData) {
 
     let myCurrentData = viewData[0] 
 
+    //Generer Card HTML for nuværende værdier
     let myCurrentHTML = 
     `<section>
         <h2>Pollental</h2>
         <ul>
-            <li>El ${myCurrentData.alder_pollen}</li>
-            <li>Birk ${myCurrentData.birch_pollen}</li>
-            <li>Græs ${myCurrentData.grass_pollen}</li>
-            <li>Bynke ${myCurrentData.mugwort_pollen}</li>
-            <li>Oliven ${myCurrentData.olive_pollen}</li>
-            <li>Ambrosie ${myCurrentData.ragweed_pollen}</li>
+            <li>El: ${myCurrentData.alder_pollen}</li>
+            <li>Birk: ${myCurrentData.birch_pollen}</li>
+            <li>Græs: ${myCurrentData.grass_pollen}</li>
+            <li>Bynke: ${myCurrentData.mugwort_pollen}</li>
+            <li>Oliven: ${myCurrentData.olive_pollen}</li>
+            <li>Ambrosie: ${myCurrentData.ragweed_pollen}</li>
         </ul>
     </section>`
 
