@@ -54,6 +54,7 @@ function getHumanReadableLocation(lat, long) {
         .then(data => {
 
             buildLocationName(data.address.city);
+            console.log(data);
 
         })
         .catch(error => {
@@ -68,11 +69,8 @@ function buildLocationName(myCity) {
 
     let myNameElement = document.getElementById('location');
 
-<<<<<<< HEAD
-    myNameElement.innerHTML = '<h1><span>Location: </span>' + myCity + '</h1>'
-=======
+
     myNameElement.innerHTML = '<h1><span>Lokation: </span>' + myCity + '</h1>'
->>>>>>> 9ce72bdaf530d706d25920d9e77e9cfb1ea5f0d7
 
 }
 
@@ -119,7 +117,7 @@ function pollenDataStructure(data) {
 }
 
 
-View
+// VIEW
 
 //Bygger en pollen data view med nuværende data og en timevist 24 time data, som er modtage i en array
 function buildPollenView(viewData) {
@@ -131,56 +129,42 @@ function buildPollenView(viewData) {
 
     let myCurrentData = viewData[0]
 
-<<<<<<< HEAD
-    //Generer Card HTML for nuværende værdier
-    let myCurrentHTML = 
-    `<section>
-        <h2>Pollental</h2>
-        <ul>
-            <li>El: ${myCurrentData.alder_pollen}</li>
-            <li>Birk: ${myCurrentData.birch_pollen}</li>
-            <li>Græs: ${myCurrentData.grass_pollen}</li>
-            <li>Bynke: ${myCurrentData.mugwort_pollen}</li>
-            <li>Oliven: ${myCurrentData.olive_pollen}</li>
-            <li>Ambrosie: ${myCurrentData.ragweed_pollen}</li>
-        </ul>
-    </section>`
-=======
+    console.log("hello");
+
     let myCurrentHTML =
         `<ul>
      <li>
          <h2>El<h2>
          <img src="assets/img/alder_pollen.jpg" alt="El Pollen">
-         <span>${myCurrentData.alder_pollen}</span>
+         <span>${myCurrentData.alder_pollen} p/m³</span>
      </li>
      <li>
          <h2>Birk<h2>
          <img src="assets/img/birch_pollen.jpg" alt="Birk Pollen">
-         <span>${myCurrentData.birch_pollen}</span>
+         <span>${myCurrentData.birch_pollen} p/m³</span>
      </li>
      <li>
          <h2>Græs<h2>
          <img src="assets/img/grass_pollen.jpg" alt="Græs Pollen">
-         <span>${myCurrentData.grass_pollen}</span>
+         <span>${myCurrentData.grass_pollen} p/m³</span>
      </li>
      <li>
          <h2>Bynke<h2>
          <img src="assets/img/mugwort_pollen.jpg" alt="Bynke Pollen">
-         <span>${myCurrentData.mugwort_pollen}</span>
+         <span>${myCurrentData.mugwort_pollen} p/m³</span>
      </li>
      <li>
          <h2>Oliven<h2>
          <img src="assets/img/olive_pollen.jpg" alt="Oliven Pollen">
-         <span>${myCurrentData.olive_pollen}</span>
+         <span>${myCurrentData.olive_pollen} p/m³</span>
      </li>
      <li>
          <h2>Ambrosie<h2>
          <img src="assets/img/ragweed_pollen.jpg" alt="Ambrosie Pollen">
-         <span>${myCurrentData.ragweed_pollen}</span>
+         <span>${myCurrentData.ragweed_pollen} p/m³</span>
      </li>
  </ul>
 `;
->>>>>>> 9ce72bdaf530d706d25920d9e77e9cfb1ea5f0d7
 
     myDisplayElement.innerHTML = myCurrentHTML
 
