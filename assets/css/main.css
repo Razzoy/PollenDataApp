@@ -12,7 +12,7 @@ h1{
     margin: 0;
     color: #fff;
     font-weight: 300;
-    font-size: 5rem;
+    font-size: 4.5rem;
 }
 h2{
     margin: 0;
@@ -22,11 +22,12 @@ h2{
 
 .container-header{
 background-color: var(--primary);
+padding: 3vh 0;
+
 }
 
 #location{
     text-align: center;
-    padding: 2vw 0;
 }
 
 #location span{
@@ -73,7 +74,7 @@ background-color: var(--primary);
 }
 
 #pollenData img{
-    display: block;
+    display: hidden;
     width: 35vw;
     height: 19vh;
     margin-left: 1rem;
@@ -88,7 +89,7 @@ background-color: var(--primary);
 
 .footer-main {
     background-color: var(--primary);
-    padding: 3rem 0;
+    padding: 3vh 0;
     position: fixed;
     bottom: 0;
     width: 100%;

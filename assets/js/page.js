@@ -1,6 +1,14 @@
 
 
 getLocation()
+const pollenTranslation = {
+    "alder": "El",
+    "birch": "Birk",
+    "grass": "Græs",
+    "mugwort": "Bynke",
+    "olive": "Oliven",
+    "ragweed": "Ambrosie"
+}
 
 
 
@@ -70,7 +78,7 @@ function buildLocationName(myCity) {
     let myNameElement = document.getElementById('location');
 
 
-    myNameElement.innerHTML = '<h1><span>Lokation: </span>' + myCity + '</h1>'
+    myNameElement.innerHTML = '<h1>' + myCity + '</h1>'
 
 }
 
@@ -80,9 +88,6 @@ function getpollenData(lat, long) {
     const timeZone = 'Europe%2FBerlin';
 
     const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${long}&current=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&hourly=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&timezone=${timeZone}&forecast_days=1`
-
-    console.log('get pollen data');
-    console.log(lat, long);
 
     fetch(url)
         .then(response => {
@@ -96,7 +101,7 @@ function getpollenData(lat, long) {
         .then(data => {
 
             receivedPollenData(data);
-            
+
 
         })
         .catch(error => {
@@ -134,7 +139,7 @@ function receivedPollenData(data) {
     latestPollenData.push(hourData[0]);
     console.log(latestPollenData);
 
-    
+
     buildPollenView(hourData, latestPollenData);
 }
 
@@ -147,56 +152,46 @@ function buildPollenView(hourData, latestData) {
     // Byg html til nuværende view
     let myDisplayElement = document.getElementById('pollenData')
 
+    const pollenTypes = ['alder_pollen', 'birch_pollen', 'grass_pollen', 'mugwort_pollen', 'olive_pollen', 'ragweed_pollen'];
 
-    // let myCurrentData = viewData[0]
-
-    latestData.forEach(element => {
-    let pollenFigure = `<figure>${element.alder_pollen}</figure>`;
-    myDisplayElement.innerHTML += pollenFigure;
+    pollenTypes.forEach(pollenType => {
+        // Hent det første ord før "_" og brug det med stort forbogstav
+        let typeName = pollenType.split('_')[0];
         
+        if (pollenTranslation.hasOwnProperty(typeName.toLowerCase())) {
+            typeName = pollenTranslation[typeName.toLowerCase()];
+        }
+
+        // Opret et element til denne pollentype
+        let pollenCard = document.createElement('div');
+        pollenCard.classList.add('pollen-card');
+
+        // Tilføj billedet til pollenkortet
+        let pollenImage = document.createElement('img');
+        pollenImage.src = `assets/img/${pollenType}.jpg`;
+        pollenImage.alt = `${typeName} pollen`; // Alternativ tekst for billedet
+        pollenCard.appendChild(pollenImage);
+
+        // Tilføj overskrift til pollenkortet
+        let heading = document.createElement('h3');
+        heading.textContent = typeName;
+        pollenCard.appendChild(heading);
+
+        myDisplayElement.appendChild(pollenCard);
+
+        // Opret et <p>-element for hver forekomst af denne pollentype i latestData
+        latestData.forEach(element => {
+            let pollenFigure = document.createElement('p');
+            pollenFigure.textContent = `${element[pollenType]} p/m³`;
+            pollenCard.appendChild(pollenFigure);
+        });
     });
 
-    hourData.forEach(element => {
-        let pollenFigure = `<figure>${element}</figure>`;
-        myDisplayElement.innerHTML += pollenFigure;
-            
-        });
 
-//     let myCurrentHTML =
-//         `<ul>
-//      <li>
-//          <h2>El<h2>
-//          <img src="assets/img/alder_pollen.jpg" alt="El Pollen">
-//          <span>${myCurrentData.alder_pollen} p/m³</span>
-//      </li>
-//      <li>
-//          <h2>Birk<h2>
-//          <img src="assets/img/birch_pollen.jpg" alt="Birk Pollen">
-//          <span>${myCurrentData.birch_pollen} p/m³</span>
-//      </li>
-//      <li>
-//          <h2>Græs<h2>
-//          <img src="assets/img/grass_pollen.jpg" alt="Græs Pollen">
-//          <span>${myCurrentData.grass_pollen} p/m³</span>
-//      </li>
-//      <li>
-//          <h2>Bynke<h2>
-//          <img src="assets/img/mugwort_pollen.jpg" alt="Bynke Pollen">
-//          <span>${myCurrentData.mugwort_pollen} p/m³</span>
-//      </li>
-//      <li>
-//          <h2>Oliven<h2>
-//          <img src="assets/img/olive_pollen.jpg" alt="Oliven Pollen">
-//          <span>${myCurrentData.olive_pollen} p/m³</span>
-//      </li>
-//      <li>
-//          <h2>Ambrosie<h2>
-//          <img src="assets/img/ragweed_pollen.jpg" alt="Ambrosie Pollen">
-//          <span>${myCurrentData.ragweed_pollen} p/m³</span>
-//      </li>
-//  </ul>
-// `;
+    // let myCurrentData = viewData[0]
+    // hourData.forEach(element => {
+    //     let pollenFigure = `<figure>${element}</figure>`;
+    //     myDisplayElement.innerHTML += pollenFigure;
 
-//     myDisplayElement.innerHTML = myCurrentHTML
-
+    //     });
 }
