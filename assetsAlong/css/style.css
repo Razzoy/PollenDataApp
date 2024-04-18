@@ -1,3 +1,29 @@
+.container-main {
+  width: 100%;
+}
+
 body {
   background-color: #4BA598;
+}
+
+main ul {
+  padding: 0;
+  margin: 0;
+}
+
+main ul li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+main ul li :first-child {
+  grid-row-start: -1;
+  grid-row-end: 1;
+}
+main ul li * {
+  border: solid 1px black;
+}
+main ul li img {
+  width: 100%;
+  max-width: 100px;
 }/*# sourceMappingURL=style.css.map */
