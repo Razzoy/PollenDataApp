@@ -17,6 +17,8 @@ main ul li{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    background-color: aliceblue;
+    
 
     :first-child{
         grid-row-start: -1;
