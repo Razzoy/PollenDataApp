@@ -1,7 +1,9 @@
 import { myFetch } from "../Utils/apiUtils.js"
-import { getFriendlyPollNames, getPollImage } from "../Utils/customUtils.js"
+import { getFriendlyPollNames, getLocation, getPollImage } from "../Utils/customUtils.js"
 
 export const myPollList = async () => {
+    const location = await getLocation();
+
     const endpoint = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=52.52&longitude=13.41&current=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&hourly=alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen&timezone=Europe%2FBerlin&forecast_days=1`
     const result = await myFetch(endpoint)
 
@@ -31,7 +33,7 @@ export const myPollList = async () => {
 
     document.querySelector('main').appendChild(ul)
 
-    console.log(ul);
+    // console.log(ul);
 
 
 

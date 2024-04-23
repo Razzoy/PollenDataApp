@@ -11,23 +11,27 @@ body {
 main ul{
     padding: 0;
     margin: 0;
+    width: 80%;
+    margin: 0 auto;
 }
 
 main ul li{
     display: grid;
+    padding: 1rem;
+    border-radius: 4px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     background-color: aliceblue;
-    
+    margin-bottom: 1rem;
 
     :first-child{
         grid-row-start: -1;
         grid-row-end: 1;
     }
 
-    * {
-        border: solid 1px black
-    }
+    // * {
+    //     border: solid 1px black
+    // }
 
     img{
         width: 100%;
