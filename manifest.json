@@ -1,0 +1,10 @@
+{
+	"name": "Pollen Data App",
+	"short_name": "polDataApp",
+	"start_url": "index.html",
+	"id": "index.html",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#ffffff",
+	"orientation": "portrait-primary"
+  }
