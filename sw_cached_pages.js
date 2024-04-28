@@ -1,7 +1,7 @@
 const cacheName = 'v1';
 
 const cacheAssets = [
-    'index.html',
+    'polApp.html',
     '/assets/css/main.css',
     '/assets/js/page.js'
 ]
